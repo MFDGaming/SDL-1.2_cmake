@@ -13,6 +13,10 @@ file (GLOB SDL_COMMON_SOURCES
     "src/thread/*.c"
     "src/timer/*.c"
     "src/video/*.c"
+    "src/video/dummy/*.c"
+    "src/audio/dummy/*.c"
+    "src/audio/disk/*.c"
+    "src/main/dummy/*.c"
 )
 
 if (WIN32)
@@ -27,13 +31,16 @@ endif ()
 
 if (SDL_USE_WINDOWS)
     file (GLOB SDL_EXTRA_SOURCES
+        "src/audio/windib/*.c"
         "src/audio/windx5/*.c"
         "src/cdrom/win32/*.c"
         "src/joystick/win32/*.c"
         "src/loadso/win32/*.c"
         "src/main/win32/*.c"
         "src/timer/win32/*.c"
+        "src/video/windib/*.c"
         "src/video/windx5/*.c"
+        "src/video/wincommon/*.c"
     )
     set (SDL_EXTRA_SOURCES
         ${SDL_EXTRA_SOURCES}
@@ -42,13 +49,13 @@ if (SDL_USE_WINDOWS)
         "src/thread/win32/SDL_systhread.c"
     )
     configure_file ("include/SDL_config_win32.h" "include/SDL_config.h" COPYONLY)
+    set (SDL_REQUIRED_LIBS winmm ddraw dxguid dinput)
 elseif (SDL_USE_LINUX)
     file (GLOB SDL_EXTRA_SOURCES
         "src/audio/pulse/*.c"
         "src/cdrom/linux/*.c"
         "src/joystick/linux/*.c"
         "src/loadso/dlopen/*.c"
-        "src/main/dummy/*.c"
         "src/thread/pthread/*.c"
         "src/timer/unix/*.c"
         "src/video/x11/*.c"
