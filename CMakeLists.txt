@@ -13,10 +13,13 @@ file (GLOB SDL_COMMON_SOURCES
     "src/thread/*.c"
     "src/timer/*.c"
     "src/video/*.c"
-    "src/video/dummy/*.c"
-    "src/audio/dummy/*.c"
     "src/audio/disk/*.c"
     "src/main/dummy/*.c"
+    "src/video/dummy/*.c"
+    "src/audio/dummy/*.c"
+    "src/timer/dummy/*.c"
+    "src/joystick/dummy/*.c"
+    "src/loadso/dummy/*.c"
 )
 
 if (WIN32)
