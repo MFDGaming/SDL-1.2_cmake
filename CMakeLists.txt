@@ -32,9 +32,14 @@ if (SDL_USE_WINDOWS)
         "src/joystick/win32/*.c"
         "src/loadso/win32/*.c"
         "src/main/win32/*.c"
-        "src/thread/win32/*.c"
         "src/timer/win32/*.c"
         "src/video/windx5/*.c"
+    )
+    set (SDL_EXTRA_SOURCES
+        ${SDL_EXTRA_SOURCES}
+        "src/thread/win32/SDL_sysmutex.c"
+        "src/thread/win32/SDL_syssem.c"
+        "src/thread/win32/SDL_systhread.c"
     )
     configure_file ("include/SDL_config_win32.h" "include/SDL_config.h" COPYONLY)
 elseif (SDL_USE_LINUX)
@@ -79,4 +84,4 @@ endif()
 add_library (SDL ${SDL_COMMON_SOURCES} ${SDL_EXTRA_SOURCES})
 target_link_libraries (SDL ${SDL_REQUIRED_LIBS})
 target_include_directories (SDL PUBLIC include)
-target_include_directories (SDL PRIVATE ${CMAKE_BINARY_DIR}/include)
+target_include_directories (SDL PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/include)
